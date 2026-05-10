@@ -1,5 +1,9 @@
 class Produkt:
     def __init__(self, nazwa, cena, ilosc, numer=""):
+        if cena < 0:
+            raise ValueError("Cena nie może być ujemna!")
+        if ilosc < 0:
+            raise ValueError("Ilość nie może być ujemna!")
         self.nazwa = nazwa
         self.cena = cena
         self.ilosc = ilosc
@@ -15,9 +19,12 @@ class Sklep:
         self.produkty = []
 
     def dodaj_produkt(self, nazwa, cena, ilosc):
-        numer = len(self.produkty) + 1
-        nowy = Produkt(nazwa, cena, ilosc, numer)
-        self.produkty.append(nowy)
+        try:
+            numer = len(self.produkty) + 1
+            nowy = Produkt(nazwa, cena, ilosc, numer)
+            self.produkty.append(nowy)
+        except ValueError as e:
+            print(f"Błąd: {e}")
 
     def pokaz_produkty(self):
         for produkt in self.produkty:
@@ -94,7 +101,7 @@ def menu(sklep, koszyk):
 
 
 sklep = Sklep("Media Expert")
-sklep.dodaj_produkt("Iphone", 2999, 10)
+sklep.dodaj_produkt("Iphone", -2999, 10)
 sklep.dodaj_produkt("Sony XMH 4500", 999, 10)
 
 koszyk = Koszyk()
