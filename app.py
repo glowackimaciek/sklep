@@ -8,5 +8,21 @@ class Produkt:
         return f"Nazwa: {self.nazwa} | Cena: {self.cena} | Ilość: {self.ilosc}"
 
 
-produkt1 = Produkt("Iphone", 3999, 10)
-print(produkt1.produkt_info())
+class Sklep:
+    def __init__(self, nazwa):
+        self.nazwa = nazwa
+        self.produkty = []
+
+    def dodaj_produkt(self, nazwa, cena, ilosc):
+        nowy = Produkt(nazwa, cena, ilosc)
+        self.produkty.append(nowy)
+
+    def pokaz_produkty(self):
+        for produkt in self.produkty:
+            print(produkt.produkt_info())
+
+
+sklep = Sklep("Media Expert")
+sklep.dodaj_produkt("Iphone", 2999, 10)
+sklep.dodaj_produkt("Sony XMH 4500", 999, 10)
+sklep.pokaz_produkty()
