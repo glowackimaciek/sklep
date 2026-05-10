@@ -63,6 +63,9 @@ def menu(sklep, koszyk):
                 sklep.pokaz_produkty()
                 try:
                     nr = int(input("Podaj numer: ")) - 1
+                    if nr < 0 or nr >= len(sklep.produkty):
+                        print("Brak takiego produktu w sklepie")
+                        continue
                     ilosc = int(input("Podaj ilosc: "))
                 except ValueError:
                     print("Tylko cyfry")
