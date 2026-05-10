@@ -1,11 +1,12 @@
 class Produkt:
-    def __init__(self, nazwa, cena, ilosc):
+    def __init__(self, nazwa, cena, ilosc, numer=""):
         self.nazwa = nazwa
         self.cena = cena
         self.ilosc = ilosc
+        self.numer = numer
 
     def produkt_info(self):
-        return f"Nazwa: {self.nazwa} | Cena: {self.cena} | Ilość: {self.ilosc}"
+        return f"ID: {self.numer} | Nazwa: {self.nazwa} | Cena: {self.cena} | Ilość: {self.ilosc}"
 
 
 class Sklep:
@@ -14,7 +15,8 @@ class Sklep:
         self.produkty = []
 
     def dodaj_produkt(self, nazwa, cena, ilosc):
-        nowy = Produkt(nazwa, cena, ilosc)
+        numer = len(self.produkty) + 1
+        nowy = Produkt(nazwa, cena, ilosc, numer)
         self.produkty.append(nowy)
 
     def pokaz_produkty(self):
