@@ -22,7 +22,26 @@ class Sklep:
             print(produkt.produkt_info())
 
 
+class Koszyk:
+    def __init__(self):
+        self.produkty = []
+        self.suma = 0
+
+    def dodaj_do_koszyka(self, produkt, ilosc):
+        self.produkty.append((produkt, ilosc))
+        self.suma = self.suma + produkt.cena * ilosc
+
+    def pokaz_koszyk(self):
+        for produkt, ilosc in self.produkty:
+            print(f"Nazwa: {produkt.nazwa} | Cena: {produkt.cena} | Ilość: {ilosc}")
+        print(f"Suma: {self.suma} zł")
+
+
 sklep = Sklep("Media Expert")
 sklep.dodaj_produkt("Iphone", 2999, 10)
 sklep.dodaj_produkt("Sony XMH 4500", 999, 10)
-sklep.pokaz_produkty()
+
+koszyk = Koszyk()
+koszyk.dodaj_do_koszyka(sklep.produkty[0], 2)
+koszyk.dodaj_do_koszyka(sklep.produkty[1], 1)
+koszyk.pokaz_koszyk()
