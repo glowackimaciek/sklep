@@ -1,54 +1,6 @@
-class Produkt:
-    def __init__(self, nazwa, cena, ilosc, numer=""):
-        if cena < 0:
-            raise ValueError("Cena nie może być ujemna!")
-        if ilosc < 0:
-            raise ValueError("Ilość nie może być ujemna!")
-        self.nazwa = nazwa
-        self.cena = cena
-        self.ilosc = ilosc
-        self.numer = numer
-
-    def produkt_info(self):
-        return f"ID: {self.numer} | Nazwa: {self.nazwa} | Cena: {self.cena} | Ilość: {self.ilosc}"
-
-
-class Sklep:
-    def __init__(self, nazwa):
-        self.nazwa = nazwa
-        self.produkty = []
-
-    def dodaj_produkt(self, nazwa, cena, ilosc):
-        try:
-            numer = len(self.produkty) + 1
-            nowy = Produkt(nazwa, cena, ilosc, numer)
-            self.produkty.append(nowy)
-        except ValueError as e:
-            print(f"Błąd: {e}")
-
-    def pokaz_produkty(self):
-        for produkt in self.produkty:
-            print(produkt.produkt_info())
-
-
-class Koszyk:
-    def __init__(self):
-        self.produkty = []
-        self.suma = 0
-
-    def dodaj_do_koszyka(self, produkt, ilosc):
-        self.produkty.append((produkt, ilosc))
-        self.suma = self.suma + produkt.cena * ilosc
-
-    def pokaz_koszyk(self):
-        for produkt, ilosc in self.produkty:
-            print(f"Nazwa: {produkt.nazwa} | Cena: {produkt.cena} | Ilość: {ilosc}")
-        print(f"Suma: {self.suma} zł")
-
-    def wyczysc_koszyk(self):
-        self.produkty = []
-        self.suma = 0
-        print("Koszyk wyczyszczono")
+from produkt import Produkt
+from sklep import Sklep
+from koszyk import Koszyk
 
 
 def menu(sklep, koszyk):
@@ -101,7 +53,7 @@ def menu(sklep, koszyk):
 
 
 sklep = Sklep("Media Expert")
-sklep.dodaj_produkt("Iphone", -2999, 10)
+sklep.dodaj_produkt("Iphone", 2999, 10)
 sklep.dodaj_produkt("Sony XMH 4500", 999, 10)
 
 koszyk = Koszyk()
